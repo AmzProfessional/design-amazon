@@ -1,0 +1,104 @@
+@use "./base.scss";
+
+// put your custom CSS here!
+
+// Зображення курсу: помірна ширина, по центру, підпис під фото
+article p > img {
+  display: block;
+  max-width: min(100%, 560px);
+  margin: 1.5rem auto 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+article p > img[src*="header-"],
+article p > img[src*="aplus-"] {
+  max-width: 100%;
+}
+
+article p > img + em {
+  display: block;
+  max-width: 560px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+  font-size: 0.95em;
+  color: var(--darkgray);
+}
+
+// Промпти в блоках коду переносяться, а не скроляться вбік
+article pre > code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+// ── Бренд: кольори з логотипа ──
+:root {
+  --brand-grad: linear-gradient(120deg, #d752f1 0%, #8822f4 50%, #462eea 100%);
+  --brand-orange: linear-gradient(120deg, #ff8f23 0%, #ff5335 100%);
+}
+
+// Тонка брендова смуга над сторінкою
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--brand-grad);
+  z-index: 1000;
+}
+
+// Назва сайту: логотип і градієнтний текст
+.page-title a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--brand-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.page-title a::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 2.6rem;
+  height: 2.6rem;
+  background: url("./static/icon.png") center / contain no-repeat;
+}
+
+// Заголовок уроку — градієнтом бренду
+.article-title {
+  background: var(--brand-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+// Розділи уроку — з помаранчевою рискою знизу
+article h2 {
+  position: relative;
+  padding-bottom: 0.4rem;
+}
+
+article h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 52px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--brand-orange);
+}
+
+// Промпти — з фіолетовою лінією зліва
+article pre {
+  border-left: 3px solid var(--secondary);
+}
+
+// Легкий фіолетовий відтінок у тіні зображень
+article p > img {
+  box-shadow: 0 4px 18px rgba(122, 31, 240, 0.14);
+}
